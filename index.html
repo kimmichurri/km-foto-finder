@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="normalize.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+ <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,800" rel="stylesheet">
+  <title>FotoFinder</title>
+</head>
+<body>
+  <section class="top">
+    <header>
+      <h1>FOTO<span><img class="logo" src="assets/foto-finder-logo.svg"/></span>FINDER</h1>
+      <article class="search-bar">
+        <input class="search" type="search" name="" placeholder="Search">
+        <i class="fas fa-search"></i>
+      </article>
+    </header>
+    <article class="add-and-filter-photos">
+      <form>
+        <label for="photo-title">Title</label>
+        <input class="title-body" type="text" name="photo-title"><br>
+        <label for="photo-body-text">Caption</label>
+        <textarea class="title-body" type="text" name="photo-body-text"></textarea><br>
+        <button class="add-and-filter-photos-buttons large" type="submit">Choose File</button><br>
+        <span class="small-buttons"><button class="add-and-filter-photos-buttons small" type="submit">View __ Favorites</button>
+        <button class="add-and-filter-photos-buttons small" type="submit">Add to Album</button></span>
+      </form>
+    </article>
+  </section>
+  <section class="photo-display">
+    <p>Photos Here!</p>
+  </section>
+  <script type="text/javascript" src="photo.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
