@@ -91,11 +91,14 @@ label {
   width: 50%;
 }
 
+
 .photo-display {
   background-color: #C2B2B4;
   display: flex;
   flex-wrap: wrap;
 }
+
+/*INNER HTML*/
 
 .foto-post {
   background-color: #FFF;

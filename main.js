@@ -11,15 +11,29 @@ var caption = document.getElementById('foto-caption');
 
 window.addEventListener('load', appendPhotos);
 
+function displayFotos(title, image, caption) {
+  fotoGallery.innerHTML +=
+   `
+   <section class="foto-post"
+    <h2 class="post-title" contenteditable="true">${title}</h2>
+    <section class="post-image"><img src=${image} /></section>
+    <section class="post-caption" contenteditable="true">${caption}</section>
+    <section class="foto-interactive-container">
+      <img class="trash-button" src="assets/delete.svg">
+      <img class="heart-button" src="assets/favorite.svg">
+    </section>
+  </section>
+  `
+}
+
 function appendPhotos() {
- imagesArr.forEach(function (photo) {
-   fotoGallery.innerHTML += `<img src=${photo.file} />`
+  imagesArr.forEach(function(photo) {
+  displayFotos(photo.title, photo.file, photo.caption)  
  })
 }
 
 function addFotoToAlbum(e) {
   e.preventDefault();
-  // console.log(input.files[0])
   if (chooseFotoFile.files[0]) {
     reader.readAsDataURL(chooseFotoFile.files[0]); 
     reader.onload = addPhoto;
@@ -27,22 +41,9 @@ function addFotoToAlbum(e) {
 }
 
 function addPhoto(e) {
-  // console.log(e.target.result);
   var newPhoto = new Photo(Date.now(), e.target.result, title.value, caption.value);
-  //add favorite later
-  fotoGallery.innerHTML += 
-  `
-  <section class="foto-post"
-    <h2 class="post-title">${title.value}</h2>
-    <section class="post-image"><img src=${e.target.result} /></section>
-    <section class="post-caption">${caption.value}</section>
-    <section class="foto-interactive-container">
-      <img class="trash-button" src="assets/delete.svg">
-      <img class="heart-button" src="assets/favorite.svg"
-  </section>
-  `;
+  displayFotos(newPhoto.title, newPhoto.file, newPhoto.caption); 
   imagesArr.push(newPhoto);
-  // console.log(imagesArr);
   newPhoto.saveToStorage(imagesArr);
 }
 
