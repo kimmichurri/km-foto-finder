@@ -93,7 +93,22 @@ label {
 
 .photo-display {
   background-color: #C2B2B4;
+  display: flex;
+  flex-wrap: wrap;
 }
+
+.foto-post {
+  border: purple;
+  height: 300px;
+  margin: 20px;
+  width: 200px;
+}
+
+.foto-post img {
+  width: 100%;
+}
+
+
 
 @media screen and (max-width: 530px) {
   header {

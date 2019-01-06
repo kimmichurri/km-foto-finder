@@ -10,7 +10,7 @@ window.addEventListener('load', appendPhotos);
 
 function appendPhotos() {
   imagesArr.forEach(function (photo) {
-    photoGallery.innerHTML += `<img src=${photo.file} />`
+    fotoGallery.innerHTML += `<img src=${photo.file} />`
   })
 }
 
@@ -28,7 +28,14 @@ function addFotoToAlbum(e) {
 function addPhoto(e) {
   // console.log(e.target.result);
   var newPhoto = new Photo(Date.now(), e.target.result);
-  fotoGallery.innerHTML += `${title.value} <img src=${e.target.result} /> ${caption.value}`;
+  fotoGallery.innerHTML += 
+  `
+  <section class="foto-post"
+    <h2 class="post-title">${title.value}</h2>
+    <section class="post-image"><img src=${e.target.result} /></section>
+    <section class="post-caption">${caption.value}</section>
+  </section>
+  `;
   imagesArr.push(newPhoto);
   newPhoto.saveToStorage(imagesArr);
   // generateFotoPost(newPhoto);
@@ -60,72 +67,3 @@ function addPhoto(e) {
 
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// IBOX Reference
-
-// function createNewIdea(e) {
-//   // e.preventDefault();
-//   // var ideaTitleInput = document.querySelector('#title-input').value;
-//   // var ideaBodyInput = document.querySelector('#body-input').value;
-//   // var ideaObject = new Idea(ideaTitleInput, ideaBodyInput);
-//   generateIdeaCard(ideaObject);
-//   cardArray.push(ideaObject);
-//   ideaObject.saveToStorage(cardArray);
-//   clearTextFields();
-// }
-
-// function generateIdeaCard(ideaObject) {
-//   var card = document.createElement('section');
-//   card.className = 'idea-card';
-//   card.innerHTML = 
-//   `<section class='card-container' id='${ideaObject.id}'>
-//     <h2 contenteditable = true class='card-title'>
-//       ${ideaObject.title}
-//     </h2>  
-//     <article contenteditable = true class='card-body'>
-//       ${ideaObject.body}
-//     </article>
-//     <article class='idea-card-footer'>
-//       <section class='arrow-buttons-quality-container'>
-//         <img class='downvote-button' src='downvote.svg' onclick='updateIdeaQuality(event, "downvote")'>
-//         <img class='upvote-button' src='upvote.svg' onclick='updateIdeaQuality(event, "upvote")'>
-//         <span class='quality-category'>
-//         Quality: 
-//         ${ideaObject.qualityArray[ideaObject.qualityIndex]}
-//         </span>
-//       </section>
-//       <section class='delete-button-container'>
-//         <img class='delete-button' src='delete.svg' onclick='deleteIdea(${ideaObject.id})'>
-//       </section>
-//     </article>
-//   </section>
-//   `
-//   cardWrapper.prepend(card);
-// }
