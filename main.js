@@ -1,17 +1,20 @@
 var chooseFotoFile = document.querySelector('#choose-file-button');
 var addToAlbum = document.querySelector('#add-to-album').addEventListener('click', addFotoToAlbum);
-var fotoGallery = document.querySelector('.photo-display');
-var imagesArr = JSON.parse(localStorage.getItem('photo')) || [];
+var fotoGallery = document.querySelector('.foto-display');
+//var imagesArr = JSON.parse(localStorage.getItem('photo')) || [];
+var imagesArr = JSON.parse(localStorage.getItem('imagesArr')) || [];
+// var imagesArr = [];
 var reader = new FileReader();
 var title = document.getElementById('foto-title');
 var caption = document.getElementById('foto-caption');
+// var favorite = document.querySelector('.heart-button');
 
 window.addEventListener('load', appendPhotos);
 
 function appendPhotos() {
-  imagesArr.forEach(function (photo) {
-    fotoGallery.innerHTML += `<img src=${photo.file} />`
-  })
+ imagesArr.forEach(function (photo) {
+   fotoGallery.innerHTML += `<img src=${photo.file} />`
+ })
 }
 
 function addFotoToAlbum(e) {
@@ -23,11 +26,10 @@ function addFotoToAlbum(e) {
   }
 }
 
-
-
 function addPhoto(e) {
   // console.log(e.target.result);
-  var newPhoto = new Photo(Date.now(), e.target.result);
+  var newPhoto = new Photo(Date.now(), e.target.result, title.value, caption.value);
+  //add favorite later
   fotoGallery.innerHTML += 
   `
   <section class="foto-post"
@@ -43,7 +45,6 @@ function addPhoto(e) {
   // console.log(imagesArr);
   newPhoto.saveToStorage(imagesArr);
 }
-
 
 // deleteFoto() {
 
