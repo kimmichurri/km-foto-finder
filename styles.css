@@ -98,7 +98,7 @@ label {
 }
 
 .foto-post {
-  border: purple;
+  background-color: #FFF;
   height: 300px;
   margin: 20px;
   width: 200px;
@@ -108,7 +108,17 @@ label {
   width: 100%;
 }
 
+.foto-interactive-container {
+  background-color: #5B4447;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+}
 
+.foto-interactive-container img {
+  margin: 5px;
+  width: 30px;
+}
 
 @media screen and (max-width: 530px) {
   header {

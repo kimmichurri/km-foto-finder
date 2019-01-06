@@ -7,7 +7,7 @@ class Photo {
     this.favorite = favorite || false;
   }
   saveToStorage() {
-
+    localStorage.setItem('imagesArr', JSON.stringify(imagesArr));
   }
   deleteFromStorage() {
 

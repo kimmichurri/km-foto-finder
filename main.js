@@ -34,30 +34,16 @@ function addPhoto(e) {
     <h2 class="post-title">${title.value}</h2>
     <section class="post-image"><img src=${e.target.result} /></section>
     <section class="post-caption">${caption.value}</section>
+    <section class="foto-interactive-container">
+      <img class="trash-button" src="assets/delete.svg">
+      <img class="heart-button" src="assets/favorite.svg"
   </section>
   `;
   imagesArr.push(newPhoto);
+  // console.log(imagesArr);
   newPhoto.saveToStorage(imagesArr);
-  // generateFotoPost(newPhoto);
 }
 
-// function generateFotoPost(photoObject) {
-//   var foto = document.createElement('section');
-//   foto.className = 'foto-post';
-//   foto.innerHTML = 
-//   `<section class='foto-post-container' id='${photoObject.id}'>
-//     <h2 class='post-title'>${photoObject.title}</h2>  
-//     <article class='post-caption'>${photoObject.caption}</article>
-//     <article class='foto-interactive-container'>
-//       <img class='trash-button' src='assets/delete.svg' onclick='deleteFoto(${photoObject.id})'>
-//       <img class='heart-button' src='assets/favorite.svg' onclick='favorFoto(event)'>
-//     </article>
-//   </section>
-//   `
-//   addPhoto();
-//   // addPhoto(photoObject);
-//   // cardWrapper.prepend(card);
-// }
 
 // deleteFoto() {
 
