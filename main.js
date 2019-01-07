@@ -80,7 +80,10 @@ function editFotoPost(e) {
 
 
 // deleteFoto() {
-  // here I want to access the correct post by its id using the same method that I did in editFotoPost function. Once I have that ID I can say uniqueID.deleteFromStorage(); within the delete from storage method I will splice it from the array in local storage. 
+//   var uniqueID = parseInt(e.target.closest('.foto-post').getAttribute('id'));
+//   var postContainer = document.getElementById(uniqueID);
+//   postContainer.deleteFromStorage();
+  // here I want to access the correct post by its id using the same method that I did in editFotoPost function. Once I have that ID I can grab the container and say postContainer.deleteFromStorage(); within the delete from storage method I will splice it from the array in local storage. 
   // Then I have to re-save the array to local storage
 // }
 
