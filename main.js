@@ -70,11 +70,13 @@ function editFotoPost(e) {
   var uniqueID = parseInt(e.target.closest('.foto-post').getAttribute('id'));
   var postContainer = document.getElementById(uniqueID);
   var uniquePostTitle = postContainer.children[0];
-  var uniquePostFile = postContainer.children[1];
+  var uniquePostFile = postContainer.children[1].children[0];
   var uniquePostCaption = postContainer.children[2];
-  var editedFoto = new Photo(uniqueID, uniquePostFile.file, uniquePostTitle.value, uniquePostCaption.value);
+  var editedFoto = new Photo(uniqueID, uniquePostFile.src, uniquePostTitle.value, uniquePostCaption.value);
   editedFoto.updatePhoto();
-    console.log("editfoto called");
+// Unset the defaults from the main title and caption fields
+  uniquePostTitle.setAttribute("value", uniquePostTitle.value);
+  uniquePostCaption.setAttribute("value", uniquePostCaption.value);
 
 }
 
