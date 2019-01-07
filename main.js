@@ -7,6 +7,7 @@ var title = document.getElementById('foto-title');
 var caption = document.getElementById('foto-caption');
 
 window.addEventListener('load', appendPhotos);
+fotoGallery.addEventListener('click', clickPostButtons);
 
 function addFotoToAlbum(e) {
   e.preventDefault();
@@ -24,16 +25,19 @@ function addPhoto(e) {
   clearInputFields();
 }
 
-function appendPhotos() {
+function appendPhotos(imagesArr) {
+  imagesArr = [];
   imagesArr.forEach(function(photo) {
-  displayFotos(photo.id, photo.file, photo.title, photo.caption);  
- })
+  var newPhoto = new Photo(photo.id, photo.file, photo.title, photo.caption);
+  imagesArr.push(newPhoto);
+  displayFotos(newPhoto);  
+ });
 }
 
 function displayFotos(id, file, title, caption) {
   fotoGallery.innerHTML +=
    `
-   <section class="foto-post" id="${id}">
+   <section class="foto-post" data-id="${id}">
     <input class="post-title" type="text" value="${title}">
     <section class="post-image"><img src=${file} /></section>
     <input class="post-caption" type="text" value="${caption}">
@@ -65,8 +69,9 @@ function editCaption(e) {
 }
 
 function editFotoPost(e) {
-  var uniqueID = parseInt(e.target.closest('.foto-post').getAttribute('id'));
-  var postContainer = document.getElementById(uniqueID);
+  var postContainer = event.target.closest('section');
+  var uniqueID = parseInt(postContainer.dataset.id);
+  console.log(uniqueID);
   var uniquePostTitle = postContainer.children[0];
   var uniquePostFile = postContainer.children[1].children[0];
   var uniquePostCaption = postContainer.children[2];
@@ -78,6 +83,22 @@ function editFotoPost(e) {
 
 }
 
+function clickPostButtons(e) {
+  var postContainer = event.target.parentElement.parentElement;
+  var uniqueID = parseInt(event.target.parentElement.parentElement.dataset.id);
+  console.log(uniqueID);
+  var photoIndex = imagesArr.findIndex(function(image) {
+      return image.id === uniqueID;
+    });
+  var clickedButton = e.target.className;
+  if (clickedButton === 'trash-button') {
+    imagesArr[photoIndex].deleteFromStorage();
+  postContainer.remove();
+  }
+  // if (clickedButton === 'heart-button') {
+
+  // }
+}
 
 // deleteFoto() {
 //   var uniqueID = parseInt(e.target.closest('.foto-post').getAttribute('id'));
@@ -90,16 +111,6 @@ function editFotoPost(e) {
 // favorFoto() {
 
 // }
-
-
-
-
-
-
-
-
-
-
 
 
 
