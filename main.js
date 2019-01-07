@@ -34,10 +34,12 @@ function displayFotos(id, file, title, caption) {
     </section>
   </section>
   `
-  var postTitle = document.querySelector(".post-title");
-  var postCaption = document.querySelector(".post-caption");
-  postTitle.onchange = editTitle;
-  postCaption.onchange = editCaption;
+  var postTitleArray = document.querySelectorAll(".post-title");
+  var postCaptionArray = document.querySelectorAll(".post-caption");
+  for (i = 0; i < postTitleArray.length; i++){
+  postTitleArray[i].onchange = editTitle;
+  postCaptionArray[i].onchange = editCaption;
+  }
 
   // var postTitle = document.querySelector(".post-title").addEventListener('input.onchange', editTitle);
   // var postCaption = document.querySelector(".post-caption").addEventListener('input.onchange', editCaption);
@@ -64,19 +66,24 @@ function clearInputFields() {
   // chooseFotoFile.innerText = 'TEST';
 }
 
-function editTitle(e) {
+function editFotoPost(e) {
   var uniqueID = parseInt(e.target.closest('.foto-post').getAttribute('id'));
-  console.log(uniqueID);
   var postContainer = document.getElementById(uniqueID);
   var uniquePostTitle = postContainer.children[0];
-  console.log(uniquePostTitle.value);
+  var uniquePostFile = postContainer.children[1];
+  var uniquePostCaption = postContainer.children[2];
+  var editedFoto = new Photo(uniqueID, uniquePostFile.file, uniquePostTitle.value, uniquePostCaption.value);
+  editedFoto.updatePhoto();
+    console.log("editfoto called");
+
+}
+
+function editTitle(e) {
+  editFotoPost(e);
 }
 
 function editCaption(e) {
-  var uniqueID = parseInt(e.target.closest('.foto-post').getAttribute('id'));
-  var postContainer = document.getElementById(uniqueID);
-   var uniquePostCaption = postContainer.children[2];
-  console.log(uniquePostCaption.value);
+  editFotoPost(e);
 }
 
 
