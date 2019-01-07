@@ -64,12 +64,19 @@ function clearInputFields() {
   // chooseFotoFile.innerText = 'TEST';
 }
 
-function editTitle() {
-  console.log('AEHFIU');
+function editTitle(e) {
+  var uniqueID = parseInt(e.target.closest('.foto-post').getAttribute('id'));
+  console.log(uniqueID);
+  var postContainer = document.getElementById(uniqueID);
+  var uniquePostTitle = postContainer.children[0];
+  console.log(uniquePostTitle.value);
 }
 
 function editCaption(e) {
-  console.log('HHHIIIII');
+  var uniqueID = parseInt(e.target.closest('.foto-post').getAttribute('id'));
+  var postContainer = document.getElementById(uniqueID);
+   var uniquePostCaption = postContainer.children[2];
+  console.log(uniquePostCaption.value);
 }
 
 
