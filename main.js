@@ -1,17 +1,16 @@
 var chooseFotoFile = document.querySelector('#choose-file-button');
 var addToAlbum = document.querySelector('#add-to-album').addEventListener('click', addFotoToAlbum);
 var fotoGallery = document.querySelector('.foto-display');
-//var imagesArr = JSON.parse(localStorage.getItem('photo')) || [];
 var imagesArr = JSON.parse(localStorage.getItem('imagesLocalStorage')) || [];
-// var imagesArr = [];
 var reader = new FileReader();
 var title = document.getElementById('foto-title');
 var caption = document.getElementById('foto-caption');
-// var postTitle = document.querySelector('.post-title').addEventListener();
-// var postCaption = document.querySelector('.post-caption').addEventListener('input', editCaption);
-// var favorite = document.querySelector('.heart-button');
+var searchInput = document.querySelector('.search');
+
 
 window.addEventListener('load', appendPhotos);
+searchInput.addEventListener('input', searchFilter);
+
 
 function addFotoToAlbum(e) {
   e.preventDefault();
@@ -40,9 +39,6 @@ function displayFotos(id, file, title, caption) {
   postTitleArray[i].onchange = editTitle;
   postCaptionArray[i].onchange = editCaption;
   }
-
-  // var postTitle = document.querySelector(".post-title").addEventListener('input.onchange', editTitle);
-  // var postCaption = document.querySelector(".post-caption").addEventListener('input.onchange', editCaption);
 }
 
 function appendPhotos() {
@@ -67,7 +63,6 @@ function addPhoto(e) {
 function clearInputFields() {
   title.value = '';
   caption.value = '';
-  // chooseFotoFile.innerText = 'TEST';
 }
 
 function editFotoPost(e) {
@@ -92,12 +87,21 @@ function editCaption(e) {
   editFotoPost(e);
 }
 
+function removeAllPosts() {
+  fotoGallery.innerHTML = '';
+}
 
-// deleteFoto() {
+function searchFilter() {
+  removeAllPosts();
+  var currentSearchText = searchInput.value;
+  console.log(currentSearchText)
+  var returnedCards = imagesArr.filter(function(photo){
+    return photo.title.includes(currentSearchText) || photo.caption.includes(currentSearchText);
+  });
+  returnedCards.forEach(function(photo){
+    displayFotos(photo.id, photo.file, photo.title, photo.caption);
+  });
+}
 
-// }
 
-// favorFoto() {
-
-// }
 
