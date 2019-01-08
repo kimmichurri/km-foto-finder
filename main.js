@@ -2,7 +2,7 @@ var chooseFotoFile = document.querySelector('#choose-file-button');
 var addToAlbum = document.querySelector('#add-to-album').addEventListener('click', addFotoToAlbum);
 var fotoGallery = document.querySelector('.foto-display');
 //var imagesArr = JSON.parse(localStorage.getItem('photo')) || [];
-var imagesArr = JSON.parse(localStorage.getItem('imagesArr')) || [];
+var imagesArr = JSON.parse(localStorage.getItem('imagesLocalStorage')) || [];
 // var imagesArr = [];
 var reader = new FileReader();
 var title = document.getElementById('foto-title');
@@ -47,9 +47,13 @@ function displayFotos(id, file, title, caption) {
 
 function appendPhotos() {
   imagesArr.forEach(function(photo) {
-  displayFotos(photo.id, photo.file, photo.title, photo.caption);  
+  displayFotos(photo.id, photo.file, photo.title, photo.caption); 
  })
+  for (var i = 0; i < imagesArr.length; i++) {
+    imagesArr[i] = new Photo(imagesArr[i].id, imagesArr[i].file, imagesArr[i].title, imagesArr[i].caption);
+  }
 }
+
 
 
 function addPhoto(e) {
