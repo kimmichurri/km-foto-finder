@@ -19,7 +19,7 @@ function addFotoToAlbum(e) {
 
 function addPhoto(e) {
   var newPhoto = new Photo(Date.now(), e.target.result, title.value, caption.value);
-  displayFotos(newPhoto.id, newPhoto.file, newPhoto.title, newPhoto.caption); 
+  displayFotos(newPhoto); 
   imagesArr.push(newPhoto);
   newPhoto.saveToStorage(imagesArr);
   clearInputFields();
@@ -34,13 +34,13 @@ function appendPhotos(imagesArr) {
  });
 }
 
-function displayFotos(id, file, title, caption) {
+function displayFotos(newPhoto) {
   fotoGallery.innerHTML +=
    `
-   <section class="foto-post" data-id="${id}">
-    <input class="post-title" type="text" value="${title}">
-    <section class="post-image"><img src=${file} /></section>
-    <input class="post-caption" type="text" value="${caption}">
+   <section class="foto-post" data-id="${newPhoto.id}">
+    <input class="post-title" type="text" value="${newPhoto.title}">
+    <section class="post-image"><img src=${newPhoto.file} /></section>
+    <input class="post-caption" type="text" value="${newPhoto.caption}">
     <section class="foto-interactive-container">
       <img class="trash-button" src="assets/delete.svg">
       <img class="heart-button" src="assets/favorite.svg">
@@ -95,31 +95,8 @@ function clickPostButtons(e) {
     imagesArr[photoIndex].deleteFromStorage();
   postContainer.remove();
   }
-  // if (clickedButton === 'heart-button') {
-
-  // }
+  if (clickedButton === 'heart-button') {
+    console.log(clickedButton);
+    postContainer.favoriteUpdate();
+  }
 }
-
-// deleteFoto() {
-//   var uniqueID = parseInt(e.target.closest('.foto-post').getAttribute('id'));
-//   var postContainer = document.getElementById(uniqueID);
-//   postContainer.deleteFromStorage();
-  // here I want to access the correct post by its id using the same method that I did in editFotoPost function. Once I have that ID I can grab the container and say postContainer.deleteFromStorage(); within the delete from storage method I will splice it from the array in local storage. 
-  // Then I have to re-save the array to local storage
-// }
-
-// favorFoto() {
-
-// }
-
-
-
-// I DUNNO
-
-// var postTitle = document.querySelector('.post-title').addEventListener();
-// var postCaption = document.querySelector('.post-caption').addEventListener('input', editCaption);
-// var favorite = document.querySelector('.heart-button');
-
-// this used to be in the displayfotos function:
-// var postTitle = document.querySelector(".post-title").addEventListener('input.onchange', editTitle);  
-// var postCaption = document.querySelector(".post-caption").addEventListener('input.onchange', editCaption);
