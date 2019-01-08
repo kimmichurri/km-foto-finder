@@ -25,8 +25,7 @@ function addPhoto(e) {
   clearInputFields();
 }
 
-function appendPhotos(imagesArr) {
-  imagesArr = [];
+function appendPhotos() {
   imagesArr.forEach(function(photo) {
   var newPhoto = new Photo(photo.id, photo.file, photo.title, photo.caption);
   imagesArr.push(newPhoto);
