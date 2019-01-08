@@ -10,31 +10,24 @@ class Photo {
     localStorage.setItem('imagesArr', JSON.stringify(imagesArr));
   }
   deleteFromStorage() {
-
+    console.log('i am the delete from storage method');
+    var photoIndex = imagesArr.findIndex(function(photoObj) {
+      return photoObj.id === this.id;
+    }, this); 
+    imagesArr.splice(photoIndex, 1);
+    this.saveToStorage();
   }
-  // findPhotoInArray(photoObj){
-  //     return photoObj.id === this.id;
-  // }
+    // find the index of the photo of the card I want removed using the same process as update photo method
+    // once we have the index we will use that to remove the item from storage, so instead of .setItem we will use .removeItem()... or I can just splice it out of the array? let me go access what i need from the dom now
   updatePhoto() {
     var photoIndex = imagesArr.findIndex(function(photoObj) {
       return photoObj.id === this.id;
     }, this); 
     imagesArr.splice(photoIndex, 1, this);
     this.saveToStorage();
-  }
+   }
 }
 
-
-// function deleteIdea(cardId) {
-//   var card = cardArray.find(function(card) {
-//     return card.id === cardId
-//   });
-//   var index = cardArray.indexOf(card);
-//   cardArray.splice(index, 1);
-//   card.deleteFromStorage(cardArray);
-//   var deleteCard = document.getElementById(cardId.toString());
-//   deleteCard.closest('.idea-card').remove();
-// }
 
     // access the images array
     // find the index of the object we are trying to replace
@@ -43,8 +36,3 @@ class Photo {
     // we will wash our hands clean of the old one, never to think of that fauhef again
 
 // REFERENCE
-
-// function replaceLastPizza(pizzas, pizza) {
-//   pizzas.splice(pizzas.length - 1, 1, pizza);
-//   return pizzas;
-// }

@@ -102,9 +102,10 @@ label {
 
 .foto-post {
   background-color: #FFF;
-  height: 300px;
+  border: 2px solid #938284;
+  height: 400px;
   margin: 20px;
-  width: 200px;
+  width: 300px;
 }
 
 .foto-post img {
@@ -122,6 +123,21 @@ label {
   margin: 5px;
   width: 30px;
 }
+
+input:focus,
+textarea:focus {
+    outline: none;
+}
+
+.foto-post input {
+  border: none;
+  height: 40px;
+  /*padding: 5px 0px;*/
+  margin: 5px;
+  /*width: 100%;*/
+}
+
+
 
 @media screen and (max-width: 530px) {
   header {
