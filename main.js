@@ -10,6 +10,7 @@ var searchInput = document.querySelector('.search');
 
 window.addEventListener('load', appendPhotos);
 searchInput.addEventListener('input', searchFilter);
+// fotoGallery.addEventListener('click', removeOrFavorite);
 
 
 function addFotoToAlbum(e) {
@@ -103,5 +104,10 @@ function searchFilter() {
   });
 }
 
+// function removeOrFavorite(e) {
+//   e.preventDefault();
+//   var selectedPost = e.target.closest('foto-interactive-container');
+//   console.log(e.target);
+// }
 
 

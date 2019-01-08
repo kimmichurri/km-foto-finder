@@ -92,19 +92,30 @@ label {
 }
 
 
-.photo-display {
+.foto-display {
   background-color: #C2B2B4;
   display: flex;
   flex-wrap: wrap;
+}
+
+  input:focus,
+  select:focus,
+  textarea:focus,
+  button:focus {
+    outline: none;
+  }
+
+  #choose-file-button {
+  
 }
 
 /*INNER HTML*/
 
 .foto-post {
   background-color: #FFF;
-  height: 300px;
+  border: 2px solid #938284;
   margin: 20px;
-  width: 200px;
+  width: 250px;
 }
 
 .foto-post img {
@@ -114,13 +125,21 @@ label {
 .foto-interactive-container {
   background-color: #5B4447;
   display: flex;
-  height: 50px;
+  height: 60px;
   justify-content: space-between;
 }
 
 .foto-interactive-container img {
   margin: 5px;
-  width: 30px;
+  width: 65px;
+}
+
+.foto-display input {
+  border: none;
+  height: 48px;
+  margin-top: 1px;
+  padding-left: 5px;
+  width: 99%;
 }
 
 @media screen and (max-width: 530px) {
