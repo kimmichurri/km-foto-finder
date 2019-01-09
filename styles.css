@@ -19,12 +19,11 @@ header {
 h1 {
   color: #FFF;
   justify-content: space-around;
-  font-size: 2.75em;
 }
 
 .logo {
-  width: 40px;
   margin: 0px 5px;
+  width: 40px;
 }
 
 .search-bar {
@@ -59,19 +58,16 @@ h1 {
 }
 
 .title-body {
-  border: none;
+  border: 0;
   height: 50px;
   margin: 10px 0px 20px 0px;
-  overflow-wrap: break-word;
   width: 100%;
 }
 
 .file-button {
-    align-items: center;
     background-color: #5B4447;
     color: #FFF;
     display: flex;
-    height: 50px;
     margin: 20px 0px 20px 0px;
 }
 
@@ -81,14 +77,12 @@ h1 {
   padding: 16px 113px;
 }
 
-
 .add-and-filter-photos-buttons {
   background-color: #5B4447;
-  border: none;
+  border: 0;
   color: #FFF;
   height: 50px;
   margin: 20px 0px 40px 0px;
-  width: 100%;
 }
 
 .file-button:hover,
@@ -113,7 +107,6 @@ h1 {
   width: 50%;
 }
 
-
 .foto-display {
   background-color: #C2B2B4;
   display: flex;
@@ -121,18 +114,14 @@ h1 {
   justify-content: space-evenly;
 }
 
-  input:focus,
-  select:focus,
-  textarea:focus,
-  button:focus {
-    outline: none;
-  }
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
 
-  /*text:focus {
-    cursor: none;
-  }*/
-
-  #choose-file-button {
+#choose-file-button {
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
@@ -141,12 +130,7 @@ h1 {
   z-index: -1;
 }
 
-
 /*INNER HTML*/
-
-/*.post-caption {
-  overflow-wrap: break-word;
-}*/
 
 .foto-post {
   background-color: #FFF;
@@ -167,8 +151,8 @@ h1 {
 }
 
 .foto-interactive-container img {
-    margin: 13px;
-    width: 35px;
+  margin: 13px;
+  width: 35px;
 }
 
 .foto-display input {
@@ -184,6 +168,8 @@ h1 {
 .post-text {
   color: #3E2A35;
 }
+
+/*MEDIA QUERIES*/
 
 @media screen and (max-width: 1452 px) {
   h1 {
