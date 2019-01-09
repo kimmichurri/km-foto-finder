@@ -45,6 +45,7 @@ I tried some different strategies for event delegation. While some paths I went 
 
 ### Spec of project:
 ---
+![project-spec](https://user-images.githubusercontent.com/43019784/50910255-aac7b300-13ea-11e9-87b3-1e31febee97d.png)
 
 
 ### My version (regular screen view):
