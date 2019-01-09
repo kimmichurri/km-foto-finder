@@ -112,6 +112,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  padding-bottom: 10px;
 }
 
 input:focus,
@@ -135,7 +136,7 @@ button:focus {
 .foto-post {
   background-color: #FFF;
   border: 2px solid #938284;
-  margin: 20px;
+  margin: 40px 20px 20px 20px;
   width: 250px;
 }
 
