@@ -37,21 +37,21 @@ h1 {
 .search {
     border-radius: 3px 0px 0px 3px;
     border: 1px solid #C2B2B4;
+    padding: 10px;
     width: 100%;
 }
 
 ::placeholder {
   color: #938284;
-  font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .search-bar i {
   background-color: #C2B2B4;
   border-radius: 0px 3px 3px 0px;
   color: #FFF;
-  font-weight: 800;
-  padding: 7px;
+  font-size: 25px;
+  padding: 8px;
 }
 
 .user-input {
@@ -62,6 +62,7 @@ h1 {
   border: none;
   height: 50px;
   margin: 10px 0px 20px 0px;
+  overflow-wrap: break-word;
   width: 100%;
 }
 
@@ -75,6 +76,7 @@ h1 {
 }
 
 .file-button label {
+  cursor: pointer;
   margin: auto;
   padding: 16px 113px;
 }
@@ -95,6 +97,7 @@ h1 {
 }
 
 .small {
+  cursor: pointer;
   width: 45%;
 }
 
@@ -115,6 +118,7 @@ h1 {
   background-color: #C2B2B4;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
   input:focus,
@@ -124,9 +128,9 @@ h1 {
     outline: none;
   }
 
-  text:focus {
+  /*text:focus {
     cursor: none;
-  }
+  }*/
 
   #choose-file-button {
   width: 0.1px;
@@ -137,7 +141,12 @@ h1 {
   z-index: -1;
 }
 
+
 /*INNER HTML*/
+
+/*.post-caption {
+  overflow-wrap: break-word;
+}*/
 
 .foto-post {
   background-color: #FFF;
@@ -164,12 +173,27 @@ h1 {
 
 .foto-display input {
   border: none;
+  font-size: 20px;
   height: 48px;
   margin-top: 1px;
   padding-left: 5px;
   width: 99%;
 }
 
+
+.post-text {
+  color: #3E2A35;
+}
+
+@media screen and (max-width: 1452 px) {
+  h1 {
+    font-size: 2.75 em;
+  }
+  .foto-display {
+    justify-content: space-between;
+    padding: 0px 40px;
+  }
+}
 
 @media screen and (max-width: 650px) {
   header {
@@ -181,7 +205,15 @@ h1 {
     margin: 0px;
     width: 55%;
   }
+  .file-button label {
+    padding: 15px 35px;
+  }
   .foto-display {
     justify-content: space-around;
   }
+
+@media screen and (max-width: 340px){
+  .small-buttons {
+    font-size: 14px;
+  } 
 }

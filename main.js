@@ -33,9 +33,9 @@ function displayFotos(id, file, title, caption, favorite) {
   fotoGallery.innerHTML +=
    `
    <section class="foto-post" data-id="${id}">
-    <input class="post-title" type="text" value="${title}">
+    <input class="post-title post-text" type="text" value="${title}">
     <section class="post-image"><img src=${file} /></section>
-    <input class="post-caption" type="text" value="${caption}">
+    <input class="post-caption post-text" type="text" value="${caption}">
     <section class="foto-interactive-container">
       <img class="trash-button" src="assets/delete.svg">
       <img class="heart-button" src=${favoriteSVG}>
