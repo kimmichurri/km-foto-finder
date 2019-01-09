@@ -65,7 +65,7 @@ h1 {
   width: 100%;
 }
 
-div {
+.file-button {
     align-items: center;
     background-color: #5B4447;
     color: #FFF;
@@ -74,8 +74,9 @@ div {
     margin: 20px 0px 20px 0px;
 }
 
-div label {
+.file-button label {
   margin: auto;
+  padding: 16px 113px;
 }
 
 
@@ -88,7 +89,7 @@ div label {
   width: 100%;
 }
 
-div:hover,
+.file-button:hover,
 .add-and-filter-photos-buttons:hover {
   background-color: #938284;
 }
@@ -169,13 +170,6 @@ div:hover,
   width: 99%;
 }
 
-svg:hover .trash-button {
-  fill: #E26D5A;
-}
-
-/*.trash-button:hover {
-  background-color: #E26D5A;
-}*/
 
 @media screen and (max-width: 650px) {
   header {

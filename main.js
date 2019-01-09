@@ -24,7 +24,12 @@ function addFotoToAlbum(e) {
   }
 }
 
-function displayFotos(id, file, title, caption) {
+function displayFotos(id, file, title, caption, favorite) {
+  if (favorite ===true) {
+    var favoriteSVG = `"assets/favorite-active.svg"`;
+  } else {
+    var favoriteSVG = `"assets/favorite.svg"`;
+  }
   fotoGallery.innerHTML +=
    `
    <section class="foto-post" data-id="${id}">
@@ -33,7 +38,7 @@ function displayFotos(id, file, title, caption) {
     <input class="post-caption" type="text" value="${caption}">
     <section class="foto-interactive-container">
       <img class="trash-button" src="assets/delete.svg">
-      <img class="heart-button" src="assets/favorite.svg">
+      <img class="heart-button" src=${favoriteSVG}>
     </section>
   </section>
   `
@@ -41,7 +46,7 @@ function displayFotos(id, file, title, caption) {
 
 function appendPhotos() {
   imagesArr.forEach(function(photo) {
-  displayFotos(photo.id, photo.file, photo.title, photo.caption); 
+  displayFotos(photo.id, photo.file, photo.title, photo.caption, photo.favorite); 
  })
   for (var i = 0; i < imagesArr.length; i++) {
     imagesArr[i] = new Photo(imagesArr[i].id, imagesArr[i].file, imagesArr[i].title, imagesArr[i].caption);
@@ -140,6 +145,6 @@ function viewFavoritePosts(e) {
   });
   console.log(favoredPosts);
   favoredPosts.forEach(function(post) {
-    displayFotos(post.id, post.file, post.title, post.caption);
+    displayFotos(post.id, post.file, post.title, post.caption, post.favorite);
   });
 }
