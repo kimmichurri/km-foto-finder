@@ -1,5 +1,5 @@
 var chooseFotoFile = document.querySelector('#choose-file-button');
-var addToAlbum = document.querySelector('#add-to-album').addEventListener('click', addFotoToAlbum);
+var addToAlbum = document.querySelector('#add-to-album');
 var fotoGallery = document.querySelector('.foto-display');
 var imagesArr = JSON.parse(localStorage.getItem('imagesLocalStorage')) || [];
 var reader = new FileReader();
@@ -10,6 +10,7 @@ var favorites = document.querySelector('.favorite');
 
 
 window.addEventListener('load', appendPhotos);
+addToAlbum..addEventListener('click', addFotoToAlbum);
 searchInput.addEventListener('input', searchFilter);
 fotoGallery.addEventListener('click', manipulatePost);
 fotoGallery.addEventListener('keyup', manipulatePost);
@@ -33,9 +34,9 @@ function displayFotos(id, file, title, caption, favorite) {
   fotoGallery.innerHTML +=
    `
    <section class="foto-post" data-id="${id}">
-    <input class="post-title" type="text" value="${title}">
+    <input class="post-title post-text" type="text" value="${title}">
     <section class="post-image"><img src=${file} /></section>
-    <input class="post-caption" type="text" value="${caption}">
+    <input class="post-caption post-text" type="text" value="${caption}">
     <section class="foto-interactive-container">
       <img class="trash-button" src="assets/delete.svg">
       <img class="heart-button" src=${favoriteSVG}>
@@ -47,7 +48,7 @@ function displayFotos(id, file, title, caption, favorite) {
 function appendPhotos() {
   imagesArr.forEach(function(photo) {
   displayFotos(photo.id, photo.file, photo.title, photo.caption, photo.favorite); 
- })
+ });
   for (var i = 0; i < imagesArr.length; i++) {
     imagesArr[i] = new Photo(imagesArr[i].id, imagesArr[i].file, imagesArr[i].title, imagesArr[i].caption);
   }
@@ -75,10 +76,9 @@ function editFotoPost(e) {
   var uniquePostCaption = postContainer.children[2];
   var editedFoto = new Photo(uniqueID, uniquePostFile.src, uniquePostTitle.value, uniquePostCaption.value);
   editedFoto.updatePhoto();
-// Reassign the defaults from the main title and caption fields
+// Reassigns the defaults from the main title and caption fields
   uniquePostTitle.setAttribute("value", uniquePostTitle.value);
   uniquePostCaption.setAttribute("value", uniquePostCaption.value);
-
 }
 
 
