@@ -1,3 +1,4 @@
+
 ## FotoFinder
 ---
 
@@ -64,6 +65,7 @@ I tried some different strategies for event delegation. While some paths I went 
 ---
 ![hover-state](https://user-images.githubusercontent.com/43019784/50910120-620ffa00-13ea-11e9-80bd-97a31d49c55a.png)
 ![favorite-view](https://user-images.githubusercontent.com/43019784/50910124-650aea80-13ea-11e9-8ad9-40779cd77e41.png)
+
 
 
 
