@@ -9,12 +9,13 @@ class Photo {
   saveToStorage() {
     localStorage.setItem('imagesLocalStorage', JSON.stringify(imagesArr));
   }
-  deleteFromStorage() {
-
+  deleteFromStorage(selectedPostId) {
+    var selectedPostIdIndex = imagesArr.findIndex(function(photo){
+    return photo.id === selectedPostId;
+  })
+  imagesArr.splice(selectedPostIdIndex, 1);
+  this.saveToStorage();
   }
-  // findPhotoInArray(photoObj){
-  //     return photoObj.id === this.id;
-  // }
   updatePhoto() {
     var photoIndex = imagesArr.findIndex(function(photoObj) {
       return photoObj.id === this.id;

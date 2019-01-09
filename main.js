@@ -10,7 +10,8 @@ var searchInput = document.querySelector('.search');
 
 window.addEventListener('load', appendPhotos);
 searchInput.addEventListener('input', searchFilter);
-// fotoGallery.addEventListener('click', removeOrFavorite);
+fotoGallery.addEventListener('click', manipulatePost);
+fotoGallery.addEventListener('keyup', manipulatePost);
 
 
 function addFotoToAlbum(e) {
@@ -24,7 +25,7 @@ function addFotoToAlbum(e) {
 function displayFotos(id, file, title, caption) {
   fotoGallery.innerHTML +=
    `
-   <section class="foto-post" id="${id}">
+   <section class="foto-post" data-id="${id}">
     <input class="post-title" type="text" value="${title}">
     <section class="post-image"><img src=${file} /></section>
     <input class="post-caption" type="text" value="${caption}">
@@ -34,12 +35,6 @@ function displayFotos(id, file, title, caption) {
     </section>
   </section>
   `
-  var postTitleArray = document.querySelectorAll(".post-title");
-  var postCaptionArray = document.querySelectorAll(".post-caption");
-  for (i = 0; i < postTitleArray.length; i++){
-  postTitleArray[i].onchange = editTitle;
-  postCaptionArray[i].onchange = editCaption;
-  }
 }
 
 function appendPhotos() {
@@ -50,7 +45,6 @@ function appendPhotos() {
     imagesArr[i] = new Photo(imagesArr[i].id, imagesArr[i].file, imagesArr[i].title, imagesArr[i].caption);
   }
 }
-
 
 
 function addPhoto(e) {
@@ -67,8 +61,11 @@ function clearInputFields() {
 }
 
 function editFotoPost(e) {
-  var uniqueID = parseInt(e.target.closest('.foto-post').getAttribute('id'));
-  var postContainer = document.getElementById(uniqueID);
+  var postContainer = e.target.closest('.foto-post');
+  console.log(postContainer);
+  var uniqueID = parseInt(postContainer.dataset.id);
+  console.log(uniqueID);
+
   var uniquePostTitle = postContainer.children[0];
   var uniquePostFile = postContainer.children[1].children[0];
   var uniquePostCaption = postContainer.children[2];
@@ -80,13 +77,6 @@ function editFotoPost(e) {
 
 }
 
-function editTitle(e) {
-  editFotoPost(e);
-}
-
-function editCaption(e) {
-  editFotoPost(e);
-}
 
 function removeAllPosts() {
   fotoGallery.innerHTML = '';
@@ -104,10 +94,24 @@ function searchFilter() {
   });
 }
 
-// function removeOrFavorite(e) {
-//   e.preventDefault();
-//   var selectedPost = e.target.closest('foto-interactive-container');
-//   console.log(e.target);
-// }
+function manipulatePost(e) {
+  if (e.target.classList.contains('trash-button')) {
+    deletePost(e);
+  }
+  if (e.target.classList.contains('post-title' || 'post-caption')) {
+    editFotoPost(e);
+  }
+}
+
+function deletePost(e) {
+  e.preventDefault();
+  var selectedPost = e.target.closest('.foto-post');
+  var selectedPostId = parseInt(selectedPost.dataset.id);
+  var selectedPostIdIndex = imagesArr.findIndex(function(photo){
+    return photo.id === selectedPostId;
+  });
+  imagesArr[selectedPostIdIndex].deleteFromStorage();
+  selectedPost.remove();
+}
 
 

@@ -13,11 +13,13 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  margin: 0px 20px;
+  margin: 0px 20px 40px 20px;
 }
 
 h1 {
   color: #FFF;
+  justify-content: space-around;
+  font-size: 2.75em;
 }
 
 .logo {
@@ -27,13 +29,15 @@ h1 {
 
 .search-bar {
   display: flex;
-  height: 30px;
-  margin-top: 20px;
+  height: 40px;
+  margin: 20px;
+  width: 300px;
 }
 
 .search {
     border-radius: 3px 0px 0px 3px;
     border: 1px solid #C2B2B4;
+    width: 100%;
 }
 
 ::placeholder {
@@ -50,27 +54,41 @@ h1 {
   padding: 7px;
 }
 
-label {
+.user-input {
   color: #938284;
-  margin-bottom: 0px;
 }
 
 .title-body {
   border: none;
-  height: 40px;
-  margin: 20px 0px;
+  height: 50px;
+  margin: 10px 0px 20px 0px;
   width: 100%;
 }
+
+div {
+    align-items: center;
+    background-color: #5B4447;
+    color: #FFF;
+    display: flex;
+    height: 50px;
+    margin: 20px 0px 20px 0px;
+}
+
+div label {
+  margin: auto;
+}
+
 
 .add-and-filter-photos-buttons {
   background-color: #5B4447;
   border: none;
   color: #FFF;
-  height: 40px;
-  margin-bottom: 20px;
+  height: 50px;
+  margin: 20px 0px 40px 0px;
   width: 100%;
 }
 
+div:hover,
 .add-and-filter-photos-buttons:hover {
   background-color: #938284;
 }
@@ -105,8 +123,17 @@ label {
     outline: none;
   }
 
+  text:focus {
+    cursor: none;
+  }
+
   #choose-file-button {
-  
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 /*INNER HTML*/
@@ -130,8 +157,8 @@ label {
 }
 
 .foto-interactive-container img {
-  margin: 5px;
-  width: 65px;
+    margin: 13px;
+    width: 35px;
 }
 
 .foto-display input {
@@ -142,10 +169,17 @@ label {
   width: 99%;
 }
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 650px) {
   header {
     align-items: center;
     display: flex;
     flex-direction: column;
+  }
+  .search-bar {
+    margin: 0px;
+    width: 55%;
+  }
+  .foto-display {
+    justify-content: space-around;
   }
 }
