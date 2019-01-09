@@ -62,16 +62,13 @@ function clearInputFields() {
 
 function editFotoPost(e) {
   var postContainer = e.target.closest('.foto-post');
-  console.log(postContainer);
   var uniqueID = parseInt(postContainer.dataset.id);
-  console.log(uniqueID);
-
   var uniquePostTitle = postContainer.children[0];
   var uniquePostFile = postContainer.children[1].children[0];
   var uniquePostCaption = postContainer.children[2];
   var editedFoto = new Photo(uniqueID, uniquePostFile.src, uniquePostTitle.value, uniquePostCaption.value);
   editedFoto.updatePhoto();
-// Unset the defaults from the main title and caption fields
+// Reassign the defaults from the main title and caption fields
   uniquePostTitle.setAttribute("value", uniquePostTitle.value);
   uniquePostCaption.setAttribute("value", uniquePostCaption.value);
 
@@ -101,6 +98,9 @@ function manipulatePost(e) {
   if (e.target.classList.contains('post-title' || 'post-caption')) {
     editFotoPost(e);
   }
+  if (e.target.classList.contains('heart-button')) {
+    favorPost(e);
+  }
 }
 
 function deletePost(e) {
@@ -114,4 +114,19 @@ function deletePost(e) {
   selectedPost.remove();
 }
 
-
+function favorPost(e) {
+  var heartButton = e.target;
+  var selectedPost = e.target.closest('.foto-post');
+  var selectedPostId = parseInt(selectedPost.dataset.id);
+  var selectedPostIdIndex = imagesArr.findIndex(function(photo){
+    return photo.id === selectedPostId;
+  });
+  var post = imagesArr[selectedPostIdIndex];
+  post.favorite = !post.favorite;
+  post.saveToStorage();
+  if(post.favorite === true) {
+    heartButton.setAttribute("src", "assets/favorite-active.svg");
+  } else {
+    heartButton.setAttribute("src", "assets/favorite.svg");
+  }
+}

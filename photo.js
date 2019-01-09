@@ -4,7 +4,7 @@ class Photo {
     this.file = file;
     this.title = title;
     this.caption = caption;
-    // this.favorite = favorite || false;
+    this.favorite = false;
   }
   saveToStorage() {
     localStorage.setItem('imagesLocalStorage', JSON.stringify(imagesArr));
