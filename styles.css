@@ -169,6 +169,14 @@ div:hover,
   width: 99%;
 }
 
+svg:hover .trash-button {
+  fill: #E26D5A;
+}
+
+/*.trash-button:hover {
+  background-color: #E26D5A;
+}*/
+
 @media screen and (max-width: 650px) {
   header {
     align-items: center;

@@ -6,12 +6,14 @@ var reader = new FileReader();
 var title = document.getElementById('foto-title');
 var caption = document.getElementById('foto-caption');
 var searchInput = document.querySelector('.search');
+var favorites = document.querySelector('.favorite');
 
 
 window.addEventListener('load', appendPhotos);
 searchInput.addEventListener('input', searchFilter);
 fotoGallery.addEventListener('click', manipulatePost);
 fotoGallery.addEventListener('keyup', manipulatePost);
+favorites.addEventListener('click', viewFavoritePosts);
 
 
 function addFotoToAlbum(e) {
@@ -82,11 +84,10 @@ function removeAllPosts() {
 function searchFilter() {
   removeAllPosts();
   var currentSearchText = searchInput.value;
-  console.log(currentSearchText)
-  var returnedCards = imagesArr.filter(function(photo){
+  var returnedCards = imagesArr.filter(function(photo) {
     return photo.title.includes(currentSearchText) || photo.caption.includes(currentSearchText);
   });
-  returnedCards.forEach(function(photo){
+  returnedCards.forEach(function(photo) {
     displayFotos(photo.id, photo.file, photo.title, photo.caption);
   });
 }
@@ -129,4 +130,16 @@ function favorPost(e) {
   } else {
     heartButton.setAttribute("src", "assets/favorite.svg");
   }
+}
+
+function viewFavoritePosts(e) {
+  e.preventDefault();
+  removeAllPosts();
+  var favoredPosts = imagesArr.filter(function(post) {
+    return post.favorite === true;
+  });
+  console.log(favoredPosts);
+  favoredPosts.forEach(function(post) {
+    displayFotos(post.id, post.file, post.title, post.caption);
+  });
 }
