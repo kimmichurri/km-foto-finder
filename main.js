@@ -1,5 +1,7 @@
+// GLOBAL VARIABLES
+
 var chooseFotoFile = document.querySelector('#choose-file-button');
-var addToAlbum = document.querySelector('#add-to-album');
+var addToAlbum = document.querySelector('.add-to-album');
 var fotoGallery = document.querySelector('.foto-display');
 var imagesArr = JSON.parse(localStorage.getItem('imagesLocalStorage')) || [];
 var reader = new FileReader();
@@ -8,14 +10,25 @@ var caption = document.getElementById('foto-caption');
 var searchInput = document.querySelector('.search');
 var favorites = document.querySelector('.favorite');
 
+// EVENT LISTENERS
 
 window.addEventListener('load', appendPhotos);
-addToAlbum..addEventListener('click', addFotoToAlbum);
+addToAlbum.addEventListener('click', addFotoToAlbum);
 searchInput.addEventListener('input', searchFilter);
 fotoGallery.addEventListener('click', manipulatePost);
 fotoGallery.addEventListener('keyup', manipulatePost);
 favorites.addEventListener('click', viewFavoritePosts);
 
+// FUNCTIONS
+
+function appendPhotos() {
+  imagesArr.forEach(function(photo) {
+  displayFotos(photo.id, photo.file, photo.title, photo.caption, photo.favorite);
+ });
+  for (var i = 0; i < imagesArr.length; i++) {
+    imagesArr[i] = new Photo(imagesArr[i].id, imagesArr[i].file, imagesArr[i].title, imagesArr[i].caption);
+  }
+}
 
 function addFotoToAlbum(e) {
   e.preventDefault();
@@ -23,6 +36,14 @@ function addFotoToAlbum(e) {
     reader.readAsDataURL(chooseFotoFile.files[0]); 
     reader.onload = addPhoto;
   }
+}
+
+function addPhoto(e) {
+  var newPhoto = new Photo(Date.now(), e.target.result, title.value, caption.value);
+  displayFotos(newPhoto.id, newPhoto.file, newPhoto.title, newPhoto.caption);
+  imagesArr.push(newPhoto);
+  newPhoto.saveToStorage(imagesArr);
+  clearInputFields();
 }
 
 function displayFotos(id, file, title, caption, favorite) {
@@ -45,63 +66,14 @@ function displayFotos(id, file, title, caption, favorite) {
   `
 }
 
-function appendPhotos() {
-  imagesArr.forEach(function(photo) {
-  displayFotos(photo.id, photo.file, photo.title, photo.caption, photo.favorite); 
- });
-  for (var i = 0; i < imagesArr.length; i++) {
-    imagesArr[i] = new Photo(imagesArr[i].id, imagesArr[i].file, imagesArr[i].title, imagesArr[i].caption);
-  }
-}
-
-
-function addPhoto(e) {
-  var newPhoto = new Photo(Date.now(), e.target.result, title.value, caption.value);
-  displayFotos(newPhoto.id, newPhoto.file, newPhoto.title, newPhoto.caption); 
-  imagesArr.push(newPhoto);
-  newPhoto.saveToStorage(imagesArr);
-  clearInputFields();
-}
-
-function clearInputFields() {
-  title.value = '';
-  caption.value = '';
-}
-
-function editFotoPost(e) {
-  var postContainer = e.target.closest('.foto-post');
-  var uniqueID = parseInt(postContainer.dataset.id);
-  var uniquePostTitle = postContainer.children[0];
-  var uniquePostFile = postContainer.children[1].children[0];
-  var uniquePostCaption = postContainer.children[2];
-  var editedFoto = new Photo(uniqueID, uniquePostFile.src, uniquePostTitle.value, uniquePostCaption.value);
-  editedFoto.updatePhoto();
-// Reassigns the defaults from the main title and caption fields
-  uniquePostTitle.setAttribute("value", uniquePostTitle.value);
-  uniquePostCaption.setAttribute("value", uniquePostCaption.value);
-}
-
-
-function removeAllPosts() {
-  fotoGallery.innerHTML = '';
-}
-
-function searchFilter() {
-  removeAllPosts();
-  var currentSearchText = searchInput.value;
-  var returnedCards = imagesArr.filter(function(photo) {
-    return photo.title.includes(currentSearchText) || photo.caption.includes(currentSearchText);
-  });
-  returnedCards.forEach(function(photo) {
-    displayFotos(photo.id, photo.file, photo.title, photo.caption);
-  });
-}
-
 function manipulatePost(e) {
   if (e.target.classList.contains('trash-button')) {
     deletePost(e);
   }
-  if (e.target.classList.contains('post-title' || 'post-caption')) {
+  if (e.target.classList.contains('post-title')) {
+    editFotoPost(e);
+  }
+  if (e.target.classList.contains('post-caption')) {
     editFotoPost(e);
   }
   if (e.target.classList.contains('heart-button')) {
@@ -116,8 +88,21 @@ function deletePost(e) {
   var selectedPostIdIndex = imagesArr.findIndex(function(photo){
     return photo.id === selectedPostId;
   });
-  imagesArr[selectedPostIdIndex].deleteFromStorage();
+  imagesArr[selectedPostIdIndex].deleteFromStorage(e);
   selectedPost.remove();
+}
+
+function editFotoPost(e) {
+  var postContainer = e.target.closest('.foto-post');
+  var uniqueID = parseInt(postContainer.dataset.id);
+  var uniquePostTitle = postContainer.children[0];
+  var uniquePostFile = postContainer.children[1].children[0];
+  var uniquePostCaption = postContainer.children[2];
+  var editedFoto = new Photo(uniqueID, uniquePostFile.src, uniquePostTitle.value, uniquePostCaption.value);
+  editedFoto.updatePhoto(e);
+// Reassigns the defaults from the main title and caption fields
+  uniquePostTitle.setAttribute("value", uniquePostTitle.value);
+  uniquePostCaption.setAttribute("value", uniquePostCaption.value);
 }
 
 function favorPost(e) {
@@ -135,6 +120,26 @@ function favorPost(e) {
   } else {
     heartButton.setAttribute("src", "assets/favorite.svg");
   }
+}
+
+function clearInputFields() {
+  title.value = '';
+  caption.value = '';
+}
+
+function removeAllPosts() {
+  fotoGallery.innerHTML = '';
+}
+
+function searchFilter() {
+  removeAllPosts();
+  var currentSearchText = searchInput.value;
+  var returnedCards = imagesArr.filter(function(photo) {
+    return photo.title.includes(currentSearchText) || photo.caption.includes(currentSearchText);
+  });
+  returnedCards.forEach(function(photo) {
+    displayFotos(photo.id, photo.file, photo.title, photo.caption);
+  });
 }
 
 function viewFavoritePosts(e) {
