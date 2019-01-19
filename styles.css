@@ -6,7 +6,7 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-.top {
+.user-input-container {
  background-color: #3E2A35;
 }
 
@@ -26,7 +26,7 @@ h1 {
   width: 40px;
 }
 
-.search-bar {
+.search-bar-container {
   display: flex;
   height: 40px;
   margin: 20px;
@@ -45,7 +45,7 @@ h1 {
   font-size: 16px;
 }
 
-.search-bar i {
+.search-bar-container i {
   background-color: #C2B2B4;
   border-radius: 0px 3px 3px 0px;
   color: #FFF;
@@ -81,18 +81,15 @@ h1 {
   background-color: #5B4447;
   border: 0;
   color: #FFF;
+  cursor: pointer;
   height: 50px;
   margin: 20px 0px 40px 0px;
+  width: 45%;
 }
 
 .file-button:hover,
 .add-and-filter-photos-buttons:hover {
   background-color: #938284;
-}
-
-.small {
-  cursor: pointer;
-  width: 45%;
 }
 
 .small-buttons {
@@ -112,7 +109,6 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding-bottom: 10px;
 }
 
 input:focus,
