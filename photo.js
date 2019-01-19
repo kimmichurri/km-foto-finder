@@ -10,7 +10,7 @@ class Photo {
     localStorage.setItem('imagesLocalStorage', JSON.stringify(imagesArr));
   }
   deleteFromStorage(selectedPostId) {
-    var selectedPostIdIndex = imagesArr.findIndex(function(photo){
+    var selectedPostIdIndex = imagesArr.findIndex(function(photo) {
     return photo.id === selectedPostId;
   });
   imagesArr.splice(selectedPostIdIndex, 1);
