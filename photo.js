@@ -6,7 +6,7 @@ class Photo {
     this.caption = caption;
     this.favorite = false;
   }
-  saveToStorage() {
+  saveToStorage(imagesArr) {
     localStorage.setItem('imagesLocalStorage', JSON.stringify(imagesArr));
   }
   deleteFromStorage(selectedPostId) {

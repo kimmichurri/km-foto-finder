@@ -1,7 +1,11 @@
+$(document).ready(() => {
+
+
 // GLOBAL VARIABLES
 
+// var addToAlbum = document.querySelector('.add-to-album');
+const $addToAlbum = $('.add-to-album');
 var chooseFotoFile = document.querySelector('#choose-file-button');
-var addToAlbum = document.querySelector('.add-to-album');
 var fotoGallery = document.querySelector('.foto-display');
 var imagesArr = JSON.parse(localStorage.getItem('imagesLocalStorage')) || [];
 var reader = new FileReader();
@@ -12,8 +16,9 @@ var favorites = document.querySelector('.favorite');
 
 // EVENT LISTENERS
 
+// addToAlbum.addEventListener('click', addFotoToAlbum);
+$addToAlbum.on('click', addFotoToAlbum);
 window.addEventListener('load', appendPhotos);
-addToAlbum.addEventListener('click', addFotoToAlbum);
 searchInput.addEventListener('input', searchFilter);
 fotoGallery.addEventListener('click', manipulatePost);
 fotoGallery.addEventListener('keyup', manipulatePost);
@@ -153,3 +158,5 @@ function viewFavoritePosts(e) {
     displayFotos(post.id, post.file, post.title, post.caption, post.favorite);
   });
 }
+
+});
