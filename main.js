@@ -6,7 +6,9 @@ $(document).ready(() => {
 // var addToAlbum = document.querySelector('.add-to-album');
 const $addToAlbum = $('.add-to-album');
 var chooseFotoFile = document.querySelector('#choose-file-button');
-var fotoGallery = document.querySelector('.foto-display');
+//keeping the same because jQuery uses different methods
+// var fotoGallery = document.querySelector('.foto-display');
+const $fotoGallery = $('.foto-display');
 var imagesArr = JSON.parse(localStorage.getItem('imagesLocalStorage')) || [];
 var reader = new FileReader();
 var title = document.getElementById('foto-title');
@@ -18,10 +20,12 @@ var favorites = document.querySelector('.favorite');
 
 // addToAlbum.addEventListener('click', addFotoToAlbum);
 $addToAlbum.on('click', addFotoToAlbum);
+// fotoGallery.addEventListener('click', manipulatePost);
+// fotoGallery.addEventListener('keyup', manipulatePost);
+$fotoGallery.on('click', manipulatePost);
+$fotoGallery.on('keyup', manipulatePost);
 window.addEventListener('load', appendPhotos);
 searchInput.addEventListener('input', searchFilter);
-fotoGallery.addEventListener('click', manipulatePost);
-fotoGallery.addEventListener('keyup', manipulatePost);
 favorites.addEventListener('click', viewFavoritePosts);
 
 // FUNCTIONS
@@ -57,7 +61,7 @@ function displayFotos(id, file, title, caption, favorite) {
   } else {
     var favoriteSVG = `"assets/favorite.svg"`;
   }
-  fotoGallery.innerHTML +=
+  $fotoGallery.append(
    `
    <section class="foto-post" data-id="${id}">
     <input class="post-title post-text" type="text" value="${title}">
@@ -68,7 +72,7 @@ function displayFotos(id, file, title, caption, favorite) {
       <img class="heart-button" src=${favoriteSVG}>
     </section>
   </section>
-  `
+  `)
 }
 
 function manipulatePost(e) {
@@ -133,7 +137,7 @@ function clearInputFields() {
 }
 
 function removeAllPosts() {
-  fotoGallery.innerHTML = '';
+  $fotoGallery.innerHTML = '';
 }
 
 function searchFilter() {
