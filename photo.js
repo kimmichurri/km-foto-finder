@@ -6,15 +6,15 @@ class Photo {
     this.caption = caption;
     this.favorite = false;
   }
-  saveToStorage(imagesArr) {
+  static saveToStorage(imagesArr) {
     localStorage.setItem('imagesLocalStorage', JSON.stringify(imagesArr));
   }
-  deleteFromStorage(selectedPostId) {
+  static deleteFromStorage(selectedPostId, imagesArr) {
     var selectedPostIdIndex = imagesArr.findIndex(function(photo) {
     return photo.id === selectedPostId;
   });
   imagesArr.splice(selectedPostIdIndex, 1);
-  this.saveToStorage();
+  Photo.saveToStorage(imagesArr);
   }
   updatePhoto() {
     var photoIndex = imagesArr.findIndex(function(photoObj) {

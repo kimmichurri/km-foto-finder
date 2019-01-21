@@ -1,3 +1,5 @@
+
+
 $(document).ready(() => {
 
 
@@ -9,7 +11,7 @@ var chooseFotoFile = document.querySelector('#choose-file-button');
 //keeping the same because jQuery uses different methods
 // var fotoGallery = document.querySelector('.foto-display');
 const $fotoGallery = $('.foto-display');
-var imagesArr = JSON.parse(localStorage.getItem('imagesLocalStorage')) || [];
+let imagesArr = JSON.parse(localStorage.getItem('imagesLocalStorage')) || [];
 var reader = new FileReader();
 var title = document.getElementById('foto-title');
 var caption = document.getElementById('foto-caption');
@@ -51,7 +53,7 @@ function addPhoto(e) {
   var newPhoto = new Photo(Date.now(), e.target.result, title.value, caption.value);
   displayFotos(newPhoto.id, newPhoto.file, newPhoto.title, newPhoto.caption);
   imagesArr.push(newPhoto);
-  newPhoto.saveToStorage(imagesArr);
+  Photo.saveToStorage(imagesArr);
   clearInputFields();
 }
 
@@ -97,7 +99,7 @@ function deletePost(e) {
   var selectedPostIdIndex = imagesArr.findIndex(function(photo){
     return photo.id === selectedPostId;
   });
-  imagesArr[selectedPostIdIndex].deleteFromStorage(e);
+  Photo.deleteFromStorage(selectedPostId, imagesArr);
   selectedPost.remove();
 }
 
@@ -123,7 +125,7 @@ function favorPost(e) {
   });
   var post = imagesArr[selectedPostIdIndex];
   post.favorite = !post.favorite;
-  post.saveToStorage();
+  Photo.saveToStorage(imagesArr);
   if(post.favorite === true) {
     heartButton.setAttribute("src", "assets/favorite-active.svg");
   } else {
